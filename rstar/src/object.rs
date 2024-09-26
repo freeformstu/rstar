@@ -82,6 +82,13 @@ pub trait RTreeObject {
     ///
     /// Usually, this will return the object's [axis aligned bounding box](AABB).
     fn envelope(&self) -> Self::Envelope;
+
+    /// Returns a reference to the object's envelope.
+    ///
+    /// This is an optional method that can be implemented for performance reasons.
+    fn envelope_ref(&self) -> Option<&Self::Envelope> {
+        None
+    }
 }
 
 /// Defines objects which can calculate their minimal distance to a point.
