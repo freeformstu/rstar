@@ -57,13 +57,6 @@ where
             RTreeNode::Parent(ref data) => data.envelope.clone(),
         }
     }
-
-    fn envelope_ref(&self) -> Option<&Self::Envelope> {
-        match self {
-            RTreeNode::Leaf(ref t) => t.envelope_ref(),
-            RTreeNode::Parent(ref data) => Some(&data.envelope),
-        }
-    }
 }
 
 #[doc(hidden)]
@@ -93,9 +86,10 @@ where
         self.envelope.clone()
     }
 
-    // pub fn envelope_ref(&self) -> &T::Envelope {
-    //     &self.envelope
-    // }
+    /// Returns a reference to the envelope of this node.
+    pub fn envelope_ref(&self) -> &T::Envelope {
+        &self.envelope
+    }
 
     pub(crate) fn new_root<Params>() -> Self
     where
