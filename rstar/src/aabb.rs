@@ -32,6 +32,11 @@ impl<P> AABB<P>
 where
     P: Point,
 {
+    /// Creates a new AABB with explicit lower and upper corners.
+    pub fn new(lower: P, upper: P) -> Self {
+        Self { lower, upper }
+    }
+
     /// Returns the AABB encompassing a single point.
     pub fn from_point(p: P) -> Self {
         AABB {
